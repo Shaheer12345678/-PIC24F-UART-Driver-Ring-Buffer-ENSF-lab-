@@ -10,4 +10,10 @@ void uart_init(uint32_t pbclk, uint32_t baud){
     U2BRG = (pbclk/(16*baud)) - 1;
     U2STAbits.UTXEN = 1;
     U2STAbits.URXEN = 1;
-    IEC1bits.U2RXIE = 1;
+    IEC1bits.U2RXIE = 1;
+    IEC1bits.U2TXIE = 1;
+    U2MODEbits.UARTEN = 1;
+}
+
+void uart_write(uint8_t b){
+    if (!rb_push(&txrb, b)) return;

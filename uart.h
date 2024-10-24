@@ -1,3 +1,4 @@
 #ifndef UART_H
 #define UART_H
-#include <stdint.h>
+#include <stdint.h>
+void uart_init(uint32_t pbclk, uint32_t baud);
