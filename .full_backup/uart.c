@@ -16,4 +16,11 @@ void uart_init(uint32_t pbclk, uint32_t baud){
 }
 
 void uart_write(uint8_t b){
-    if (!rb_push(&txrb, b)) return;
+    if (!rb_push(&txrb, b)) return;
+    IEC1bits.U2TXIE = 1;
+}
+
+int uart_read(uint8_t* b){
+    return rb_pop(&rxrb, b);
+}
+
