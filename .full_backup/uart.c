@@ -23,4 +23,10 @@ void uart_write(uint8_t b){
 int uart_read(uint8_t* b){
     return rb_pop(&rxrb, b);
 }
-
+
+void __attribute__((interrupt, no_auto_psv)) _U2RXInterrupt(void){
+    IFS1bits.U2RXIF = 0;
+    while (U2STAbits.URXDA){
+        rb_push(&rxrb, U2RXREG);
+    }
+}

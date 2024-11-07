@@ -7,4 +7,7 @@ int main(){
     for (const char* p=msg; *p; ++p) uart_write(*p);
     while(1){
         uint8_t b;
-        if (uart_read(&b)){
+        if (uart_read(&b)){
+            uart_write(b); // echo
+        }
+    }
