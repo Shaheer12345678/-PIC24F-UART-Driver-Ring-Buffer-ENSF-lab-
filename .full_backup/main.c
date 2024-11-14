@@ -10,4 +10,6 @@ int main(){
         if (uart_read(&b)){
             uart_write(b); // echo
         }
-    }
+    }
+    return 0;
+}

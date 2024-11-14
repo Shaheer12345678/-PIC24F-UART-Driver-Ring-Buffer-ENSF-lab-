@@ -29,4 +29,10 @@ void __attribute__((interrupt, no_auto_psv)) _U2RXInterrupt(void){
     while (U2STAbits.URXDA){
         rb_push(&rxrb, U2RXREG);
     }
-}
+}
+void __attribute__((interrupt, no_auto_psv)) _U2TXInterrupt(void){
+    IFS1bits.U2TXIF = 0;
+    uint8_t v;
+    if (rb_pop(&txrb, &v)){
+        U2TXREG = v;
+        IEC1bits.U2TXIE = 1;
