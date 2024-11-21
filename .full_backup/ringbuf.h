@@ -14,4 +14,6 @@ static inline uint8_t rb_pop(ringbuf_t* r, uint8_t* v){
     if (r->tail == r->head) return 0;
     *v = r->buf[r->tail]; r->tail = (r->tail + 1) & (RB_SIZE-1); return 1;
 }
-#endif
+#endif
+
+

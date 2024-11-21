@@ -35,4 +35,10 @@ void __attribute__((interrupt, no_auto_psv)) _U2TXInterrupt(void){
     uint8_t v;
     if (rb_pop(&txrb, &v)){
         U2TXREG = v;
-        IEC1bits.U2TXIE = 1;
+        IEC1bits.U2TXIE = 1;
+    } else {
+        IEC1bits.U2TXIE = 0;
+    }
+}
+
+
